@@ -9,10 +9,8 @@ import time
 exclude = '"*."'
 dossierbase = ('/media/')
 odir = os.listdir(dossierbase)
-
 path_to_backup_file_name = '/home/michel/photos'
 engine_options = '-avrzt --info=progress2 --log-file=/home/michel/rsync.log'
-
 
 def rsync_backup(source_path, path_to_backup_file_name, exclude, engine_options):
 	exclusions = ['--exclude=%s' % x.strip() for x in exclude.split(',')]
@@ -25,7 +23,6 @@ while 1:
 			odir = os.listdir(dossierbase)
 		else:
 			break
-	#  Je sais que la liste est ok donc je Rsync et a la fin je démonte la carte. donc la liste est vide le reprend la boucle du dessus.
 	while len(odir) == 1 and os.path.ismount(dossierbase + odir[0]) == True:
 		if os.path.exists(dossierbase + odir[0]) == True:
 			source_path = (dossierbase + odir[0])	
